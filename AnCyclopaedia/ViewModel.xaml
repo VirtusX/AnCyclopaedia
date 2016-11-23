@@ -1,0 +1,118 @@
+﻿<Page
+    x:Class="AnCyclopaedia.ViewModel"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:media3D="using:Windows.UI.Xaml.Media.Media3D"
+    mc:Ignorable="d">
+    <Page.Background>
+        <ImageBrush Stretch="UniformToFill" ImageSource="Assets/2000px-Lightblue_empty_grid.svg.png"/>
+    </Page.Background>
+
+    <Grid >
+        <Pivot Margin="50,0,0,0" Title="Анатомическая модель" Foreground="Black" d:LayoutOverrides="LeftPosition, RightPosition" Background="{x:Null}">
+            <PivotItem Header="Полная модель" Background="Transparent" Margin="14,0,10,0">
+                <Grid>
+                    <ToggleSwitch Toggled="ts1_Toggled"  x:Name="ts1" Header="Справочная информация" Height="60" Margin="63,74,0,0" VerticalAlignment="Top" Width="180" OffContent="Показать" OnContent="Скрыть"/>
+                    <TextBlock  x:Name="Helper" HorizontalAlignment="Right" Margin="0,10,0,85" TextWrapping="Wrap" Text="Справочная информация по анатомической модели, историческая справка, какие-либо интересные факты." Width="365" IsDoubleTapEnabled="False" IsHoldingEnabled="False" IsRightTapEnabled="False" IsTapEnabled="False" Visibility="Collapsed"/>
+                    <RelativePanel Margin="381,35,420,-120" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden" d:LayoutOverrides="LeftPosition, RightPosition, TopPosition, BottomPosition">
+                        <RelativePanel.Transform3D>
+                            <media3D:PerspectiveTransform3D></media3D:PerspectiveTransform3D>
+                        </RelativePanel.Transform3D>
+                        <Image Source="Assets/model.png" Name="image" ToolTipService.ToolTip="Для правильного отображения 3Д модели и работы с ней необходим DirectX, работа с которым занимает &quot;немного&quot; больше времени, чем создания макета приложения, поэтому в данный момент тут статичная картинка" Margin="40,0,-430,180" MinWidth="151" MinHeight="355">
+                            <Image.Transform3D>
+                                <media3D:CompositeTransform3D CenterX="200" CenterY="100" RotationX="{x:Bind sliderX.Value,Mode=OneWay}" RotationY="{x:Bind sliderY.Value,Mode=OneWay}" RotationZ="{x:Bind sliderZ.Value,Mode=OneWay}">
+                                </media3D:CompositeTransform3D>
+                            </Image.Transform3D>
+                        </Image>
+                        <Slider Maximum="360" RelativePanel.Below="image" Name="sliderX" Width="335" Margin="-300,-308,-25,0" Height="44" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+                        <Slider Maximum="360" RelativePanel.Below="sliderX" Name="sliderY" Width="335" Margin="-300,-266,-30,0" Height="44" VerticalAlignment="Top" RenderTransformOrigin="0.438,0.455" HorizontalAlignment="Left"/>
+                        <Slider Maximum="360" RelativePanel.Below="sliderY" Name="sliderZ" Width="335" Margin="-300,-224,-25,180" HorizontalAlignment="Left"/>
+                    </RelativePanel>
+                </Grid>
+            </PivotItem>
+            <PivotItem Header="Частичная модель" Margin="10,0,14,0">
+                <Grid>
+                    <ScrollViewer HorizontalAlignment="Right" Margin="0,10,0,19" Width="66" ToolTipService.ToolTip="Панель с выбором элемента модели для отображения">
+                        <StackPanel>
+                            <Button Click="Brain_Click" x:Name="Brain" Width="50" Height="50" VerticalAlignment="Stretch" >
+                                <Button.Background>
+                                    <ImageBrush Stretch="Uniform" ImageSource="Assets/brain.png"/>
+                                </Button.Background>
+                            </Button>
+                            <Button Click="Heart_Click" x:Name="Heart" Width="50" Height="50">
+                                <Button.Background>
+                                    <ImageBrush Stretch="Uniform" ImageSource="Assets/hearth.png"/>
+                                </Button.Background>
+                            </Button>
+                            <Button Click="Kidneys_Click" x:Name="Kidneys" Width="50" Height="50">
+                                <Button.Background>
+                                    <ImageBrush Stretch="Uniform" ImageSource="Assets/183044-200.png"/>
+                                </Button.Background>
+                            </Button>
+                        </StackPanel>
+                    </ScrollViewer>
+                    <RelativePanel x:Name="Model3d" Margin="393,15,353,19" MinHeight="555" MinWidth="417" Visibility="Collapsed">
+                        <RelativePanel.Transform3D>
+                            <media3D:PerspectiveTransform3D></media3D:PerspectiveTransform3D>
+                        </RelativePanel.Transform3D>
+                        <Image Source="Assets/ModelTile.png" Name="image2" ToolTipService.ToolTip="Для правильного отображения 3Д модели и работы с ней необходим DirectX, работа с которым занимает &quot;немного&quot; больше времени, чем создания макета приложения, поэтому в данный момент тут статичная картинка" Margin="20,10,85,160" MinWidth="300" MinHeight="246">
+                            <Image.Transform3D>
+                                <media3D:CompositeTransform3D CenterX="200" CenterY="100" RotationX="{x:Bind sliderX1.Value,Mode=OneWay}" RotationY="{x:Bind sliderY1.Value,Mode=OneWay}" RotationZ="{x:Bind sliderZ1.Value,Mode=OneWay}">
+                                </media3D:CompositeTransform3D>
+                            </Image.Transform3D>
+                        </Image>
+                        <Slider Maximum="360" RelativePanel.Below="image2" Name="sliderX1" Width="400" Margin="10,-133,-10,89"/>
+                        <Slider Maximum="360" RelativePanel.Below="sliderX1" Name="sliderY1" Width="400" Margin="10,-96,-10,52"/>
+                        <Slider Maximum="360" RelativePanel.Below="sliderY1" Name="sliderZ1" Width="400" Margin="10,-54,-10,10"/>
+                    </RelativePanel>
+                    <TextBlock x:Name="Guider" HorizontalAlignment="Left" Margin="68,60,0,10" TextWrapping="Wrap" Width="283" d:LayoutOverrides="TopPosition, BottomPosition" FontSize="18.667" Text="Часть статьи по выбранному органу.  Желательно, чтобы содержимое данного элемента не превышало размер основной статьи хотя бы на четверть." Visibility="Collapsed"/>
+                </Grid>
+            </PivotItem>
+        </Pivot>
+        <SplitView x:Name="Navi" DisplayMode="CompactOverlay" IsPaneOpen="False" CompactPaneLength="48" OpenPaneLength="260" HorizontalAlignment="Left" Width="260" PaneBackground="{x:Null}">
+            <SplitView.Pane>
+                <StackPanel Orientation="Vertical">
+                    <StackPanel Orientation="Horizontal">
+                        <Button Click="MenuButton1_Click" x:Name="MenuButton1" FontFamily="Segoe MDL2 Assets" Content="&#xE700;"
+        					Width="48" Height="50" Background="Transparent"  />
+                        <Button x:Name="Back" Height="51" Width="212" Background="#D8FFFFFF" IsHitTestVisible="False" IsTapEnabled="False" IsRightTapEnabled="False" IsHoldingEnabled="False" IsDoubleTapEnabled="False"></Button>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Button Click="MenuButton2_Click" x:Name="MenuButton2" FontFamily="Segoe MDL2 Assets" Content="&#xE10F;"
+        					Width="48" Height="50" Background="Transparent"/>
+                        <Button Click="MenuButton2_Click"  FontSize="18" VerticalAlignment="Stretch" Content="Главный экран" IsHitTestVisible="False" Height="53" Width="212" Background="#D8FFFFFF" HorizontalContentAlignment="Left" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Button x:Name="MenuButton3" FontFamily="Segoe MDL2 Assets" Content="&#xE7AD;"
+        					Width="48" Height="50" Background="Transparent" IsHitTestVisible="False" IsDoubleTapEnabled="False" IsHoldingEnabled="False" IsRightTapEnabled="False" IsTapEnabled="False"/>
+                        <Button Content="Анатомическая модель" Height="50" Width="212" Background="#D8FFFFFF" HorizontalContentAlignment="Left" FontSize="18" VerticalAlignment="Stretch" IsDoubleTapEnabled="False" IsHoldingEnabled="False" IsRightTapEnabled="False" IsTapEnabled="False" IsHitTestVisible="False" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Button Click="MenuButton4_Click" x:Name="MenuButton4" FontFamily="Segoe MDL2 Assets" Content="&#xE8F1;"
+        					Width="48" Height="50" Background="Transparent"/>
+                        <Button x:Name="HelperButton" Click="MenuButton4_Click" Content="Справочник" Height="50" Width="212" Background="#D8FFFFFF" HorizontalContentAlignment="Left" FontSize="18" VerticalAlignment="Stretch" IsHitTestVisible="False" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Button Click="MenuButton5_Click" x:Name="MenuButton5" FontFamily="Segoe MDL2 Assets" Content="&#xE897;"
+        					Width="48" Height="50" Background="Transparent"/>
+                        <Button x:Name="HelpButton" Click="MenuButton5_Click" Content="Помощь" Height="50" Width="212" Background="#D8FFFFFF" HorizontalContentAlignment="Left" FontSize="18" VerticalAlignment="Stretch" IsHitTestVisible="False" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Button Click="Fullscreen_Click" x:Name="Fullscreen" FontFamily="Segoe MDL2 Assets" Content="&#xE740;" Width="48" Height="50" Background="Transparent" ToolTipService.ToolTip="Полноэкранный режим"/>
+                        <Button Click="Fullscreen_Click" x:Name="FullscreenText" Content="Полноэкранный режим" Height="50" Width="212" Background="#D8FFFFFF" HorizontalContentAlignment="Left" FontSize="16" VerticalAlignment="Stretch" IsHitTestVisible="False"/>
+                    </StackPanel>
+                    <StackPanel Orientation ="Horizontal">
+                        <Button Click="Theme_Click" x:Name="Theme" FontFamily="Segoe MDL2 Assets" Content="&#xE8EB;" Width="48" Height="50" Background="Transparent"/>
+                        <Button Click="Theme_Click" x:Name="ThemeButton" Content="Сменить тему" Height="50" Width="212" Background="#D8FFFFFF" HorizontalContentAlignment="Left" FontSize="18" VerticalAlignment="Stretch" IsHitTestVisible="False"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Button x:Name="Back2" Width="48" Height="50" Background="Transparent"/>
+                        <Button x:Name="Back3" Height="366" Width="212" Background="#D8FFFFFF" IsHitTestVisible="False" IsTapEnabled="False" IsRightTapEnabled="False" IsHoldingEnabled="False" IsDoubleTapEnabled="False"></Button>
+                    </StackPanel>
+                </StackPanel>
+            </SplitView.Pane>
+        </SplitView>
+    </Grid>
+</Page>

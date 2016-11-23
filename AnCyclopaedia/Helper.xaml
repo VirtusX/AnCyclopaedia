@@ -1,0 +1,87 @@
+﻿<Page
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:AnCyclopaedia.Assets"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:AnCyclopaedia="using:AnCyclopaedia"
+    xmlns:media3D="using:Windows.UI.Xaml.Media.Media3D"
+    x:Class="AnCyclopaedia.Assets.Helper"
+    mc:Ignorable="d" >
+    <Page.Background>
+        <ImageBrush Stretch="UniformToFill" ImageSource="2000px-Lightblue_empty_grid.svg.png"/>
+    </Page.Background>
+
+    <Grid>
+        <SearchBox x:Name="SearchText" Height="40" Margin="365,55,360,0" VerticalAlignment="Top" Opacity="0.6" d:LayoutOverrides="LeftPosition, RightPosition" PlaceholderText="Поиск..." QueryText="" ChooseSuggestionOnEnter="True" AllowDrop="True" ToolTipService.ToolTip="Поиск (в данный момент пустышка) обращается к базе данных программы " Background="#FFE4E4E4" Foreground="Black" TabNavigation="Once" SearchHistoryEnabled="False"/>
+        <TextBlock Text="{Binding BigText}" x:Name="FoundText" Margin="85,150,80,285" TextWrapping="Wrap" Foreground="#FF0A0A0A" FontWeight="Bold" FontSize="32" d:IsHidden="False"/>
+
+        <SplitView x:Name="Navi" CompactPaneLength="48" OpenPaneLength="260" HorizontalAlignment="Left" Width="260" DisplayMode="CompactOverlay" PaneBackground="{x:Null}">
+            <SplitView.Pane>
+                <StackPanel Orientation="Vertical">
+                    <StackPanel Orientation="Horizontal">
+                        <Button x:Name="MenuButton1" FontFamily="Segoe MDL2 Assets" Content="&#xE700;"
+							Width="48" Height="50" Background="Transparent" Click="MenuButton1_Click" />
+                        <Button x:Name="Back" Height="51" Width="212" Background="#D8FFFFFF" IsHitTestVisible="False" IsTapEnabled="False" IsRightTapEnabled="False" IsHoldingEnabled="False" IsDoubleTapEnabled="False"></Button>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Button Click="MenuButton2_Click" x:Name="MenuButton2" FontFamily="Segoe MDL2 Assets" Content="&#xE10F;"
+							Width="48" Height="50" Background="Transparent"/>
+                        <Button Click="MenuButton2_Click"  FontSize="18" VerticalAlignment="Stretch" Content="Главный экран"  IsHitTestVisible="False" Height="53" Width="212" Background="#D8FFFFFF" HorizontalContentAlignment="Left" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Button Click="MenuButton3_Click" x:Name="MenuButton3" FontFamily="Segoe MDL2 Assets" Content="&#xE7AD;"
+							Width="48" Height="50" Background="Transparent"/>
+                        <Button x:Name="ViewModelButton" Click="MenuButton3_Click" Content="Анатомическая модель"  FontSize="18" VerticalAlignment="Stretch" IsHitTestVisible="False" Height="50" Width="212" Background="#D8FFFFFF" HorizontalContentAlignment="Left"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Button x:Name="MenuButton4" FontFamily="Segoe MDL2 Assets" Content="&#xE8F1;"
+							Width="48" Height="50" Background="Transparent" IsHitTestVisible="False" IsDoubleTapEnabled="False" IsHoldingEnabled="False" IsRightTapEnabled="False" IsTapEnabled="False"/>
+                        <Button Content="Справочник" Height="50" Width="212" Background="#D8FFFFFF" HorizontalContentAlignment="Left" FontSize="18" VerticalAlignment="Stretch" IsHitTestVisible="False" IsDoubleTapEnabled="False" IsHoldingEnabled="False" IsRightTapEnabled="False" IsTapEnabled="False" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Button Click="MenuButton5_Click" x:Name="MenuButton5" FontFamily="Segoe MDL2 Assets" Content="&#xE897;"
+							Width="48" Height="50" Background="Transparent"/>
+                        <Button x:Name="Help" Click="MenuButton5_Click" Content="Помощь" Height="50" Width="212" Background="#D8FFFFFF" HorizontalContentAlignment="Left" FontSize="18" VerticalAlignment="Stretch" IsHitTestVisible="False" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Button Click="Fullscreen_Click" x:Name="Fullscreen" FontFamily="Segoe MDL2 Assets" Content="&#xE740;" Width="48" Height="50" Background="Transparent" ToolTipService.ToolTip="Полноэкранный режим"/>
+                        <Button Click="Fullscreen_Click" x:Name="FullscreenText" Content="Полноэкранный режим" Height="50" Width="212" Background="#D8FFFFFF" HorizontalContentAlignment="Left" FontSize="16" VerticalAlignment="Stretch" IsHitTestVisible="False"/>
+                    </StackPanel>
+                    <StackPanel Orientation ="Horizontal">
+                        <Button Click="Theme_Click" x:Name="Theme" FontFamily="Segoe MDL2 Assets" Content="&#xE8EB;" Width="48" Height="50" Background="Transparent"/>
+                        <Button Click="Theme_Click" x:Name="ThemeButton" Content="Сменить тему" Height="50" Width="212" Background="#D8FFFFFF" HorizontalContentAlignment="Left" FontSize="18" VerticalAlignment="Stretch" IsHitTestVisible="False"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Button x:Name="Back2" Width="48" Height="50" Background="Transparent"/>
+                        <Button x:Name="Back3" Height="366" Width="212" Background="#D8FFFFFF" IsHitTestVisible="False" IsTapEnabled="False" IsRightTapEnabled="False" IsHoldingEnabled="False" IsDoubleTapEnabled="False"></Button>
+                    </StackPanel>
+                </StackPanel>
+            </SplitView.Pane>
+        </SplitView>
+        <Button x:Name="ButtonModel" Content="Ссылка на модель" Height="75" Margin="245,0,0,190" VerticalAlignment="Bottom" Width="210" FontSize="21.333">
+            <Button.Flyout>
+                <Flyout x:Name="myFlyout" Placement="Right">
+                    <Grid Height="403" Width="301">
+                        <Image Source="model.png" Name="image2" ToolTipService.ToolTip="Для правильного отображения 3Д модели и работы с ней необходим DirectX, работа с которым занимает &quot;немного&quot; больше времени, чем создания макета приложения, поэтому в данный момент тут статичная картинка" Margin="20,10,0,0" MinWidth="300" MinHeight="246" Height="280" VerticalAlignment="Top" d:LayoutOverrides="LeftPosition, RightPosition">
+                            <Image.Transform3D>
+                                <media3D:CompositeTransform3D CenterX="200" CenterY="100" RotationX="{x:Bind sliderX1.Value,Mode=OneWay}" RotationY="{x:Bind sliderY1.Value,Mode=OneWay}" RotationZ="{x:Bind sliderZ1.Value,Mode=OneWay}">
+                                </media3D:CompositeTransform3D>
+                            </Image.Transform3D>
+                        </Image>
+                        <Slider Maximum="360" RelativePanel.Below="image2" Name="sliderX1" Margin="42,0,43,89" Height="41" VerticalAlignment="Bottom" d:LayoutOverrides="LeftPosition, RightPosition"/>
+                        <Slider Maximum="360" RelativePanel.Below="sliderX1" Name="sliderY1" Margin="42,0,43,52" Height="39" VerticalAlignment="Bottom" d:LayoutOverrides="LeftPosition, RightPosition"/>
+                        <Slider Maximum="360" RelativePanel.Below="sliderY1" Name="sliderZ1" Margin="42,0,43,10" Height="44" VerticalAlignment="Bottom" d:LayoutOverrides="LeftPosition, RightPosition"/>
+                    </Grid>
+                </Flyout>
+            </Button.Flyout>
+        </Button>
+        <Button x:Name="ButtonImage" Content="Ссылка на картинку" Height="75" Margin="0,0,215,190" VerticalAlignment="Bottom" Width="220" FontSize="21.333" HorizontalAlignment="Right">
+            <Button.Flyout>
+                <Flyout x:Name="ImageFlyout" Placement="Left">
+                    <Image Source="ModelTile.png" Height="452" Width="359" CanDrag="True"/>
+                </Flyout>
+            </Button.Flyout>
+        </Button>
+    </Grid>
+</Page>

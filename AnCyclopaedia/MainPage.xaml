@@ -1,0 +1,135 @@
+﻿<Page
+    x:Class="AnCyclopaedia.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <Page.Background>
+        <ImageBrush Stretch="UniformToFill" ImageSource="Assets/2000px-Lightblue_empty_grid.svg.png"/>
+    </Page.Background>
+
+    <Grid>
+        <Grid.Background>
+            <ImageBrush Stretch="Fill"/>
+        </Grid.Background>
+        <Hub Header="Main menu" Margin="50,0,0,0">
+            <HubSection Header="" Width="535">
+                <HubSection.Background>
+                    <ImageBrush ImageSource="Assets/ManHero.png" Stretch="UniformToFill"/>
+                </HubSection.Background>
+                <DataTemplate>
+                    <Grid/>
+                </DataTemplate>
+            </HubSection>
+            <HubSection Header="Anatomic model" Width="342" FontSize="24">
+                <DataTemplate>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <TextBlock 
+                           Grid.Row="1" Margin="0,10,0,0" TextWrapping="Wrap" 
+                           Text="Anatomic 3D model with details"/>
+                        <Button Grid.Row="0" Click="MenuButton3_Click" x:Name="ViewModelTile" Height="280" HorizontalAlignment="Stretch" Margin="0,0,10,0" d:LayoutOverrides="LeftPosition, RightPosition" >
+                            <Button.Background>
+                                <ImageBrush Stretch="Uniform" ImageSource="Assets/ModelTile.png"/>
+                            </Button.Background>
+                        </Button>
+                    </Grid>
+                </DataTemplate>
+            </HubSection>
+            <HubSection Header="Directory" Width="275" FontSize="24">
+                <DataTemplate>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Row="1" Margin="0,10,0,0" TextWrapping="Wrap">Articles from the Encyclopedia</TextBlock>
+                        <Button Grid.Row="0" x:Name="HelperTile" Click="MenuButton4_Click" Height="280" HorizontalAlignment="Stretch" Margin="0,0,10,0" d:LayoutOverrides="LeftPosition, RightPosition" >
+                            <Button.Background>
+                                <ImageBrush ImageSource="Assets/HelperButton.png" Stretch="Uniform" ></ImageBrush>
+                            </Button.Background>
+                        </Button>
+                    </Grid>
+                </DataTemplate>
+            </HubSection>
+            <HubSection Header="Help" Width="254" FontSize="24">
+                <DataTemplate>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Row="1" Margin="0,10,55,0" TextWrapping="Wrap">About AnCyclopaedia</TextBlock>
+                        <Button Grid.Row="0" x:Name="HelpTile" Click="MenuButton5_Click" Height="280" HorizontalAlignment="Stretch" Margin="0,0,10,0" d:LayoutOverrides="LeftPosition, RightPosition" >
+                            <Button.Background>
+                                <ImageBrush ImageSource="Assets/information.png" Stretch="Uniform" ></ImageBrush>
+                            </Button.Background>
+                        </Button>
+                    </Grid>
+                </DataTemplate>
+            </HubSection>
+            <HubSection Width="574">
+                <HubSection.Background>
+                    <ImageBrush ImageSource="Assets/ManHero2.png" Stretch="UniformToFill"/>
+                </HubSection.Background>
+            </HubSection>
+        </Hub>
+        <SplitView x:Name="Navi" CompactPaneLength="48" OpenPaneLength="260" HorizontalAlignment="Left" Width="260" DisplayMode="CompactOverlay" PaneBackground="{x:Null}">
+            <SplitView.Pane>
+                <StackPanel Orientation="Vertical">
+                    <StackPanel Orientation="Horizontal">
+                        <Button x:Name="MenuButton1" FontFamily="Segoe MDL2 Assets" Content="&#xE700;"
+                			Width="48" Height="50" Background="Transparent" Click="MenuButton1_Click" ToolTipService.ToolTip="Панель навигации. При малом количестве элементов может быть заменена на кнопку Назад и Домой." />
+                        <Button  Height="51" Width="212" Background="#D8FFFFFF" IsHitTestVisible="False" IsTapEnabled="False" IsRightTapEnabled="False" IsHoldingEnabled="False" IsDoubleTapEnabled="False"></Button>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Button  FontFamily="Segoe MDL2 Assets" Content="&#xE10F;"
+                			Width="48" Height="50" Background="Transparent" IsHitTestVisible="False" IsTapEnabled="False" IsRightTapEnabled="False" IsHoldingEnabled="False" IsDoubleTapEnabled="False"/>
+                        <Button  FontSize="18" VerticalAlignment="Stretch" Content="Главный экран" IsHitTestVisible="False" IsTapEnabled="False" IsRightTapEnabled="False" IsHoldingEnabled="False" IsDoubleTapEnabled="False" Height="53" Width="212" Background="#D8FFFFFF" HorizontalContentAlignment="Left" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Button  x:Name="MenuButton3" FontFamily="Segoe MDL2 Assets" Content="&#xE7AD;"
+                			Width="48" Height="50" Click="MenuButton3_Click" ToolTipService.ToolTip="Модель">
+                            <Button.Background>
+                                <ImageBrush Stretch="Fill"/>
+                            </Button.Background>
+                        </Button>
+                        <Button Click="MenuButton3_Click" x:Name="ViewModelButton" Content="Анатомическая модель" FontSize="18" VerticalAlignment="Center" IsHitTestVisible="False" Height="50" Width="212" Background="#D8FFFFFF" HorizontalContentAlignment="Left" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Button Click="MenuButton4_Click" x:Name="MenuButton4" FontFamily="Segoe MDL2 Assets" Content="&#xE8F1;"
+                			Width="48" Height="50" Background="Transparent" ToolTipService.ToolTip="Справочные материалы"/>
+                        <Button Click="MenuButton4_Click" x:Name="Helper" Content="Справочник" FontSize="18" VerticalAlignment="Center" IsHitTestVisible="False" Height="50" Width="212" Background="#D8FFFFFF" HorizontalContentAlignment="Left" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Button Click="MenuButton5_Click" x:Name="MenuButton5" FontFamily="Segoe MDL2 Assets" Content="&#xE897;"
+                			Width="48" Height="50" Background="Transparent" ToolTipService.ToolTip="Помощь"/>
+                        <Button Click="MenuButton5_Click" x:Name="Help" Content="Помощь" FontSize="18" VerticalAlignment="Center" IsHitTestVisible="False" Height="50" Width="212" Background="#D8FFFFFF" HorizontalContentAlignment="Left" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Button Click="Fullscreen_Click" x:Name="Fullscreen" FontFamily="Segoe MDL2 Assets" Content="&#xE740;" Width="48" Height="50" Background="Transparent" ToolTipService.ToolTip="Полноэкранный режим"  />
+                        <Button Click="Fullscreen_Click" x:Name="FullscreenText" Content="Полноэкранный режим" FontSize="16" VerticalAlignment="Center" IsHitTestVisible="False" Height="50" Width="212" Background="#D8FFFFFF" HorizontalContentAlignment="Left"/>
+                    </StackPanel>
+                    <StackPanel Orientation ="Horizontal">
+                        <Button Click="Theme_Click" x:Name="Theme" FontFamily="Segoe MDL2 Assets" Content="&#xE8EB;" Width="48" Height="50" Background="Transparent" ToolTipService.ToolTip="Сменить тему"/>
+                        <Button Click="Theme_Click" x:Name="ThemeButton" Content="Сменить тему" FontSize="18" VerticalAlignment="Center" IsHitTestVisible="False" Height="50" Width="212" Background="#D8FFFFFF" HorizontalContentAlignment="Left"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Button Click="ColorWindow_OnClick" x:Name="ColorWindow" FontFamily="Segoe MDL2 Assets" Content="&#xE735;" Width="48" Height="50" Background="Transparent" ></Button>
+                        <Button Content="Поменять тему" FontSize="18" VerticalAlignment="Center" IsHitTestVisible="False" Height="50" Width="212" Background="#D8FFFFFF" HorizontalContentAlignment="Left"></Button>
+                    </StackPanel>
+                </StackPanel>
+            </SplitView.Pane>
+        </SplitView>
+    </Grid>
+</Page>
